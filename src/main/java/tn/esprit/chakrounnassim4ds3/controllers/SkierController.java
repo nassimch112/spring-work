@@ -1,12 +1,15 @@
 package tn.esprit.chakrounnassim4ds3.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.chakrounnassim4ds3.entities.Skier;
+import tn.esprit.chakrounnassim4ds3.entities.TypeSubscription;
 import tn.esprit.chakrounnassim4ds3.services.ISkierServices;
 
+import java.time.LocalDate;
+import java.util.Calendar;
 
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -25,6 +28,10 @@ public class SkierController {
 
     @PostMapping("add")
     Skier addSkier(@RequestBody Skier skier) {
+        LocalDate startDate = skier.getSubscription().getStartDate();
+        TypeSubscription subType = skier.getSubscription().getTypeSub();
+        LocalDate endDate = calculateEndDate(startDate, subType);
+        skier.getSubscription().setEndDate(endDate);
         return skierService.addSkier(skier);
     }
 
@@ -41,5 +48,18 @@ public class SkierController {
     @DeleteMapping("remove/{numSkier}")
     void removeSkier(@PathVariable("numSkier") Long numSkier) {
         skierService.removeSkier(numSkier);
+    }
+
+    public static LocalDate calculateEndDate(LocalDate startDate, TypeSubscription subscriptionType) {
+        switch (subscriptionType) {
+            case ANNUAL:
+                return startDate.plusYears(1); // Add 1 year for annual subscription
+            case MONTHLY:
+                return startDate.plusMonths(1); // Add 1 month for monthly subscription
+            case SEMESTRIAL:
+                return startDate.plusMonths(6); // Add 6 months for semestrial subscription
+            default:
+                throw new IllegalArgumentException("Invalid subscription type");
+        }
     }
 }
