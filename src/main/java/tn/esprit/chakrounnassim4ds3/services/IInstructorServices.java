@@ -11,5 +11,6 @@ public interface IInstructorServices {
     Instructor updateInstructor(Instructor instructor);
     void deleteInstructor(long numInstructor);
     List<Instructor> getAllInstructors();
+    Instructor addInstructorAndAssignToCourse(Instructor instructor, Long numCourse);
 
 }

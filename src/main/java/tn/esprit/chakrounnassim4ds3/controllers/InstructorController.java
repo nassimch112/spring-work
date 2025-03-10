@@ -41,4 +41,9 @@ public class InstructorController {
     void removeCourse(@PathVariable("numInstructor") Long numInstructor) {
         instructorService.deleteInstructor(numInstructor);
     }
+
+    @PostMapping("add/{courseId}")
+    Instructor addInstructorAndAssignToCourse(@RequestBody Instructor instructor,@PathVariable Long courseId) {
+        return instructorService.addInstructorAndAssignToCourse(instructor, courseId);
+    }
 }

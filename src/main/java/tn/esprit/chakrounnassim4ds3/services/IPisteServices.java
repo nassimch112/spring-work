@@ -2,6 +2,7 @@ package tn.esprit.chakrounnassim4ds3.services;
 
 import tn.esprit.chakrounnassim4ds3.entities.Color;
 import tn.esprit.chakrounnassim4ds3.entities.Piste;
+import tn.esprit.chakrounnassim4ds3.entities.Skier;
 
 import java.util.List;
 

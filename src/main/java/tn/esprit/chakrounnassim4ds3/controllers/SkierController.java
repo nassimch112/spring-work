@@ -62,4 +62,9 @@ public class SkierController {
                 throw new IllegalArgumentException("Invalid subscription type");
         }
     }
+
+    @PostMapping("add/{numCourse}")
+    public Skier addSkierAndAssignToCourse(@RequestBody Skier skier, @PathVariable Long numCourse) {
+        return skierService.addSkierAndAssignToCourse(skier, numCourse);
+    }
 }

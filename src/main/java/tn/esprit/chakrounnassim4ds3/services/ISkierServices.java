@@ -11,4 +11,5 @@ public interface ISkierServices {
     Skier updateSkier(Skier skier);
     void removeSkier(long id);
     List<Skier> getSkiers();
+    Skier addSkierAndAssignToCourse(Skier skier, Long numCourse);
 }
