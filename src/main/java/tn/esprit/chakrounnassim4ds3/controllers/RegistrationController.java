@@ -16,4 +16,10 @@ public class RegistrationController {
     public Registration addRegistrationAndAssignToSkier(@RequestBody Registration registration, @PathVariable Long numSkier) {
         return registrationService.addRegistrationAndAssignToSkier(registration, numSkier);
     }
+
+
+    @PostMapping("assign/{numRegistration}/{numCourse}")
+    public Registration assignRegistrationToCourse(@PathVariable Long numRegistration, @PathVariable Long numCourse) {
+        return registrationService.assignRegistrationToCourse(numRegistration, numCourse);
+    }
 }
