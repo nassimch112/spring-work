@@ -1,6 +1,7 @@
 package tn.esprit.chakrounnassim4ds3.services;
 
 import tn.esprit.chakrounnassim4ds3.entities.Skier;
+import tn.esprit.chakrounnassim4ds3.entities.TypeSubscription;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface ISkierServices {
     void removeSkier(long id);
     List<Skier> getSkiers();
     Skier addSkierAndAssignToCourse(Skier skier, Long numCourse);
+    List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription);
 }

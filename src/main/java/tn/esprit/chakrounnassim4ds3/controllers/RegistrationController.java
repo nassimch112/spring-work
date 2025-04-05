@@ -22,4 +22,9 @@ public class RegistrationController {
     public Registration assignRegistrationToCourse(@PathVariable Long numRegistration, @PathVariable Long numCourse) {
         return registrationService.assignRegistrationToCourse(numRegistration, numCourse);
     }
+
+    @PostMapping("add/{numSkier}/{numCourse}")
+    public Registration addRegistrationAndAssignToSkierAndCourse(@RequestBody Registration registration, @PathVariable Long numSkier, @PathVariable Long numCourse) {
+        return registrationService.addRegistrationAndAssignToSkierAndCourse(registration, numSkier, numCourse);
+    }
 }

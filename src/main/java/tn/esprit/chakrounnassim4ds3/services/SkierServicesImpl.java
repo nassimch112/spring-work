@@ -3,12 +3,10 @@ package tn.esprit.chakrounnassim4ds3.services;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.esprit.chakrounnassim4ds3.entities.Course;
-import tn.esprit.chakrounnassim4ds3.entities.Registration;
-import tn.esprit.chakrounnassim4ds3.entities.Skier;
-import tn.esprit.chakrounnassim4ds3.entities.Subscription;
+import tn.esprit.chakrounnassim4ds3.entities.*;
 import tn.esprit.chakrounnassim4ds3.repositories.ISkierRepository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,5 +60,18 @@ public class SkierServicesImpl implements ISkierServices {
         skier.setSubscription(sub);
         skierRepository.save(skier);
         return skier;
+    }
+
+    @Override
+    public List<Skier> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription) {
+        List<Skier> skiers = skierRepository.findAll();
+        List<Skier> skiersBySub = new ArrayList<>();
+
+        for(Skier skier : skiers) {
+            if(skier.getSubscription() != null && skier.getSubscription().getTypeSub() == typeSubscription) {
+                skiersBySub.add(skier);
+            }
+        }
+        return skiersBySub;
     }
 }
